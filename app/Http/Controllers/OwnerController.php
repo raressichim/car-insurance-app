@@ -12,7 +12,7 @@ class OwnerController extends Controller
      */
     public function index()
     {
-        $owners = Owner::all();
+        $owners = Owner::with('cars')->get();
         return view('owners.index', compact('owners'));
     }
 

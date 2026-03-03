@@ -10,4 +10,9 @@ class Owner extends Model
         'name',
         'surname'
     ];
+
+    public function cars()
+    {
+        return $this->hasMany(Car::class);
+    }
 }
