@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class CarController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function create()
     {
         $owners = Owner::all();
@@ -24,7 +28,7 @@ class CarController extends Controller
 
         Car::create($request->all());
 
-        return redirect()->route('owners.index')
+        return redirect()->route('insurance')
             ->with('success', 'Car was added successfully.');
     }
 
@@ -45,7 +49,7 @@ class CarController extends Controller
 
         $car->update($request->all());
 
-        return redirect()->route('owners.index')
+        return redirect()->route('insurance')
             ->with('success', 'Car was edited successfully.');
     }
 
@@ -53,7 +57,7 @@ class CarController extends Controller
     {
         $car->delete();
 
-        return redirect()->route('owners.index')
+        return redirect()->route('insurance')
             ->with('success', 'Car was deleted successfully.');
     }
 }
