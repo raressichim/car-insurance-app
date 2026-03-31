@@ -5,7 +5,7 @@ use App\Http\Controllers\OwnerController;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
-
+Route::get('/setLanguage/{lang}', [App\Http\Controllers\LanguageController::class, 'setLanguage'])->name('setLanguage');
 Route::get('/', [App\Http\Controllers\OwnerController::class, 'index'])->name('insurance');
 
 Route::middleware(['auth', 'role:editor'])->group(function () {
