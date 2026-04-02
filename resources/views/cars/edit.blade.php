@@ -9,22 +9,18 @@
                 <form action="{{ route('cars.update', $car->id) }}" method="POST">
                     @csrf
                     @method('PUT')
-
                     <div class="mb-3">
                         <label>Registration Number</label>
                         <input type="text" name="reg_number" class="form-control" value="{{ $car->reg_number }}">
                     </div>
-
                     <div class="mb-3">
                         <label>Brand</label>
                         <input type="text" name="brand" class="form-control" value="{{ $car->brand }}">
                     </div>
-
                     <div class="mb-3">
                         <label>Model</label>
                         <input type="text" name="model" class="form-control" value="{{ $car->model }}">
                     </div>
-
                     <div class="mb-3">
                         <label>Owner</label>
                         <select name="owner_id" class="form-control">
@@ -36,10 +32,17 @@
                             @endforeach
                         </select>
                     </div>
-
                     <button class="btn btn-success">Update Car</button>
                 </form>
-
+                @if ($errors->any())
+                    <div class="alert alert-danger mt-3">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

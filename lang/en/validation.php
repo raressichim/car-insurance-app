@@ -1,6 +1,19 @@
 <?php
 
 return [
+    'name_required' => 'Owner name is required.',
+    'surname_required' => 'Owner surname is required.',
+    'role_required' => 'Role must be selected.',
+    'name_min' => 'Name must be at least 2 characters.',
+    'name_max' => 'Name cannot exceed 50 characters.',
+    'surname_min' => 'Surname must be at least 2 characters.',
+    'surname_max' => 'Surname cannot exceed 50 characters.',
+
+    'reg_number_required' => 'License plate number is required.',
+    'brand_required' => 'Car brand is required.',
+    'brand_max' => 'Brand cannot exceed :max characters.',
+    'model_required' => 'Car model is required.',
+    'model_max' => 'Model cannot exceed :max characters.',
 
     /*
     |--------------------------------------------------------------------------

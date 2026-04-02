@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OwnerRequest;
 use App\Models\Owner;
-use Illuminate\Http\Request;
 
 class OwnerController extends Controller
 {
@@ -18,7 +18,7 @@ class OwnerController extends Controller
         return view('owners.create');
     }
 
-    public function store(Request $request)
+    public function store(OwnerRequest $request)
     {
         $request->validate([
             'name' => 'required',
@@ -42,7 +42,7 @@ class OwnerController extends Controller
         return view('owners.edit', compact('owner'));
     }
 
-    public function update(Request $request, Owner $owner)
+    public function update(OwnerRequest $request, Owner $owner)
     {
         $request->validate([
             'name' => 'required',
