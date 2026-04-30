@@ -44,6 +44,30 @@
                     </div>
                 @endif
             </div>
+            <hr>
+            <h5>Car Photos</h5>
+            <div class="row mb-3">
+                @foreach($car->photos as $photo)
+                    <div class="col-md-3 text-center mb-3">
+                        <img src="{{ asset('storage/' . $photo->path) }}" class="img-fluid mb-2"
+                             style="height:150px; object-fit:cover;" alt="There is no image available for this car">
+
+                        <form action="{{ route('photos.delete', $photo->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </div>
+                @endforeach
+            </div>
+            <form action="{{ route('cars.photos.upload', $car->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="mb-3">
+                    <label>Upload Photos</label>
+                    <input type="file" name="photos[]" multiple class="form-control">
+                </div>
+                <button class="btn btn-primary">Upload</button>
+            </form>
         </div>
     </div>
 @endsection

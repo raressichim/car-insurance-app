@@ -23,4 +23,6 @@ Route::middleware(['auth', 'role:editor'])->group(function () {
     Route::get('/cars/{car}/edit', [CarController::class, 'edit'])->name('cars.edit');
     Route::put('/cars/{car}', [CarController::class, 'update'])->name('cars.update');
     Route::delete('/cars/{car}', [CarController::class, 'destroy'])->name('cars.destroy');
+    Route::post('/cars/{id}/photos', [CarController::class, 'uploadPhotos'])->name('cars.photos.upload');
+    Route::delete('/photos/{id}', [CarController::class, 'deletePhoto'])->name('photos.delete');
 });
