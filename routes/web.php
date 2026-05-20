@@ -8,7 +8,7 @@ Auth::routes();
 Route::get('/setLanguage/{lang}', [App\Http\Controllers\LanguageController::class, 'setLanguage'])->name('setLanguage');
 Route::get('/', [App\Http\Controllers\OwnerController::class, 'index'])->name('insurance');
 
-Route::middleware(['auth', 'role:editor'])->group(function () {
+Route::middleware(['auth', 'role:admin,editor'])->group(function () {
     Route::get('/owners/create', [OwnerController::class, 'create'])->name('owners.create');
     Route::post('/owners', [OwnerController::class, 'store'])->name('owners.store');
     Route::get('/owners/{owner}/edit', [OwnerController::class, 'edit'])->name('owners.edit');
@@ -17,7 +17,7 @@ Route::middleware(['auth', 'role:editor'])->group(function () {
 });
 
 
-Route::middleware(['auth', 'role:editor'])->group(function () {
+Route::middleware(['auth', 'role:admin,editor'])->group(function () {
     Route::get('/cars/create', [CarController::class, 'create'])->name('cars.create');
     Route::post('/cars', [CarController::class, 'store'])->name('cars.store');
     Route::get('/cars/{car}/edit', [CarController::class, 'edit'])->name('cars.edit');

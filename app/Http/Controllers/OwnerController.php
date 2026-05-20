@@ -26,8 +26,12 @@ class OwnerController extends Controller
             'role' => 'required'
         ]);
 
-        Owner::create($request->all());
-
+        Owner::create([
+            'name' => $request->name,
+            'surname' => $request->surname,
+            'role' => $request->role,
+            'user_id' => auth()->id()
+        ]);
         return redirect()->route('insurance')
             ->with('success', 'Owner was created successfully.');
     }
@@ -39,6 +43,7 @@ class OwnerController extends Controller
 
     public function edit(Owner $owner)
     {
+        $this->authorize('update', $owner);
         return view('owners.edit', compact('owner'));
     }
 
@@ -48,7 +53,7 @@ class OwnerController extends Controller
             'name' => 'required',
             'surname' => 'required'
         ]);
-
+        $this->authorize('update', $owner);
         $owner->update($request->all());
 
         return redirect()->route('insurance')
@@ -57,6 +62,8 @@ class OwnerController extends Controller
 
     public function destroy(Owner $owner)
     {
+        $this->authorize('delete', $owner);
+
         $owner->delete();
 
         return redirect()->route('insurance')
